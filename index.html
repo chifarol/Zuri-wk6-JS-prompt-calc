@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+        let num1 = null;
+        let operator = '';
+        let num2 = null;
+        let alertMsg = '';
+
+        const calculator = (x, op, y) => {
+            switch (op) {
+                case '+':
+                    return +x + +y
+                case '-':
+                    return +x - +y
+                case '*':
+                    return +x * +y
+                case '/':
+                    return +x / +y
+            }
+
+        }
+        const enterInput = () => {
+            if (num1 === null) {
+                num1 = prompt(`${alertMsg} \n Step 1: \n Please enter a number`);
+                enterInput();
+            }
+            else {
+                if (Number(num1)) {
+                    operator = prompt(`${alertMsg} \n Step 2: \n Please enter operator(*, +, -, /)`);
+                    if (operator == '*' || operator == '/' || operator == '+' || operator == '-') {
+                        num2 = prompt('Step 3: \n Please enter another number');
+                        if (Number(num2)) {
+                            let result = calculator(num1, operator, num2);
+                            alert(result);
+                        }
+                        else {
+                            alertMsg = 'Invalid Input';
+                            num2 = prompt(`${alertMsg} \n Step 3: \n Please enter another number`);
+                            enterInput();
+                        }
+                    }
+                    else {
+                        alertMsg = 'Invalid Operator';
+                        enterInput();
+                    }
+                }
+                else {
+                    alertMsg = 'Invalid Input';
+                    num1 = prompt(`${alertMsg} \n Step 1: \n Please enter a number`);
+                    enterInput();
+                }
+            }
+
+        }
+        enterInput();
+
+    </script>
+</body>
+
+</html>
